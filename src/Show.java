@@ -46,19 +46,29 @@ public class Show {
             System.out.println("Актер " + actor.getName() + " добавлен в спектакль \"" + title + "\".");
         }
     }
+
     public void changeActor(Actor newActor, String surnameToReplace) {
-        boolean found = false;
+        int count = 0;
+        int index = -1;
 
         for (int i = 0; i < listOfActors.size(); i++) {
             if (listOfActors.get(i).getSurname().equals(surnameToReplace)) {
-                listOfActors.set(i, newActor);
-                found = true;
-                break;
+                count++;
+                if (index == -1) {
+                    index = i;
+                }
             }
         }
 
-        if (!found) {
+        if (count == 0) {
             System.out.println("Предупреждение: Актер с фамилией \"" + surnameToReplace + "\" отсутствует в спектакле.");
+        } else if (count > 1) {
+            System.out.println("Ошибка: В спектакле найдено " + count
+                    + " актёров с фамилией \"" + surnameToReplace + "\". Замена невозможна — фамилия не уникальна.");
+        } else {
+            // count == 1 — всё хорошо, заменяем
+            listOfActors.set(index, newActor);
+            System.out.println("Актер с фамилией \"" + surnameToReplace + "\" успешно заменён.");
         }
     }
 }

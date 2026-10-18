@@ -2,7 +2,6 @@ import java.util.Objects;
 
 public class Actor extends Person {
     public double height;
-    //private Person.Gender gender;
 
     public Actor(String name, String surname, Person.Gender gender, double height) {
         super(name, surname, gender);
@@ -12,10 +11,6 @@ public class Actor extends Person {
     public double getHeight() {
         return height;
     }
-
-    //public Person.Gender getGender() {
-    //return gender;
-    //}
 
     @Override
     public int hashCode() {
